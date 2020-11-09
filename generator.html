@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<table style="width:100%">
+    <tr>
+      <th>Images</th>
+      <th>Captions</th>
+    </tr>
+  
+    {%for img in imgrand %}
+   <tr>
+
+      <td><img src="static/{{img}}" alt="{{imgL}}" style="width:50%"></td>
+      
+      <td>{{predictions[loop.index0]}}</td>
+   </tr>
+   
+    {% endfor %} 
+  </table>
+</html>
+
+
+
+

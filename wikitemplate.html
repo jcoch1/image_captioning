@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <table style="width: 100%">
+    <colgroup>
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 70%;">
+       <col span="1" style="width: 15%;">
+    </colgroup>
+    <tr>
+      <th>Captions</th>
+      <th>Images</th>
+      <th>Predictions</th>
+    </tr>
+    
+    {% for url in img_url %}
+    <tr>
+      <td>{{captions[loop.index0]}}</td>
+      <td><img width="40%" height="40%" src="{{url}}"></td>
+      <td>{{predictions[loop.index0]}}</td>
+    </tr>
+    
+    {% endfor %} 
+    </table>
+</html>
+
+  
+  
+  

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<title>wikiscrape app</title>
+<style>
+    *{
+        font-size:30px;
+    }
+</style>
+
+<body>
+    <input id="wiki_input" type="text"/>
+    <button id="wiki_button">Wikipedia Article</button>
+    
+    <p>Caption: <span id="caption"></span></p>
+    <img id="selected-image" src=""/>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+    <script> 
+        let base64Image; 
+        $("#wiki_button").click(function(event){
+            let message = {
+                wiki_input: $("#wiki_input").val()
+            }
+            $.post("http://localhost:5000/wikiscrape", JSON.stringify(message), function(response){
+                $("#res").text(response.images[0].image_caption);
+                let dataURL = response.images[0].image_url;
+                $('#selected-image').attr("src", dataURL);
+                image_url = dataURL.replace("data:image/png;base64,","");
+                console.log(base64Image);
+                
+                let message2 = {
+                url: image_url
+            }
+            console.log(message2);
+            $.post("http://localhost:5000/predict", JSON.stringify(message2), function(response){
+                $("#caption").text(response.prediction);
+                console.log(response);
+            });
+            
+            
+        });   
+        });
+    </script>
+
+</body>
+</head>
